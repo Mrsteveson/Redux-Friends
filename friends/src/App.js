@@ -1,33 +1,43 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { fetchFriendsList, } from './actions';
+import { fetchingFriends, } from './actions';
 import FriendList from './components/FriendList';
-import FriendForm from './components/FriendForm';
+// import FriendForm from './components/FriendForm';
+import LoginForm from './components/LoginForm';
+import ProtectedRoute from './components/ProtectedRoute';
  
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-
-    }
-  }
 
   componentDidMount() {
-    this.props.fetchFriendsList();
+    this.props.fetchingFriends();
   }
 
   render() {
     return (
-      <div className="App">
-        <h1>Redux My Friends</h1>
-        <FriendForm />
-        <FriendList 
-          friends = {this.props.friends}
-        />
-      </div>
+      <Router>
+        <div className="App">
+          <header>
+            <h1>Redux My Friends</h1>
+            <Link to = '/'>Home</Link>
+            <Link to = '/login'>Login</Link>
+            <Link to = '/protected'>Protected</Link>
+          </header>
+          <div>
+            <Route 
+              path = '/login' 
+              component = {LoginForm} 
+            />
+            <ProtectedRoute exact path = '/protected' 
+              component = {FriendList}
+              friends = {this.props.friends}
+            />
+          </div>
+        </div>
+      </Router>
     );
   }
 }
@@ -40,4 +50,4 @@ function mapStateToProps({ friendListReducer }) {
   }
 }
 
-export default connect(mapStateToProps, { fetchFriendsList }) (App);
+export default connect(mapStateToProps, { fetchingFriends }) (App);

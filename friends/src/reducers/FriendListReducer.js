@@ -1,16 +1,37 @@
-import { FETCHING, FETCHING_SUCCESS, FETCHING_FAILURE } from '../actions';
+import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE, FETCHING, FETCHING_SUCCESS, FETCHING_FAILURE } from '../actions';
 
 const initialState = {
     friends: [],
     fetchingFriends: false,
-    savingFriends: false,
+    addingFriends: false,
     deletingFriend: false,
     updatingFriend: false,
+    loggingIn: false,
     error: null,
 }
 
-export const friendsListReducer = ( state = initialState, action ) => {
+export const friendListReducer = ( state = initialState, action ) => {
     switch(action.type) {
+        case LOGIN:
+            return {
+                ...state,
+                loggingIn: true,
+                fetchingFriends: false,
+                error: null
+            }
+        case LOGIN_SUCCESS:
+            return {
+                ...state,
+                loggingIn: false,
+                error: null,
+            }
+        case LOGIN_FAILURE:
+            return {
+                ...state,
+                loggingIn: false,
+                error: action.payload
+            }
+
         case FETCHING:
             return {
                 ...state,
@@ -30,6 +51,6 @@ export const friendsListReducer = ( state = initialState, action ) => {
                 error: action.payload,
             }
         default:
-                return state;
+            return state;
     }
 }
