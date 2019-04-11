@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchingFriends, } from './actions';
+import { fetchingFriends, deleteFriend } from './actions';
+
 import FriendList from './components/FriendList';
-// import FriendForm from './components/FriendForm';
 import LoginForm from './components/LoginForm';
 import ProtectedRoute from './components/ProtectedRoute';
  
@@ -21,7 +21,7 @@ class App extends React.Component {
       <Router>
         <div className="App">
           <header>
-            <h1>Redux My Friends</h1>
+            <h1>Redux Friends List</h1>
             <Link to = '/'>Home</Link>
             <Link to = '/login'>Login</Link>
             <Link to = '/protected'>Protected</Link>
@@ -34,6 +34,7 @@ class App extends React.Component {
             <ProtectedRoute exact path = '/protected' 
               component = {FriendList}
               friends = {this.props.friends}
+              deleteFriend = {this.props.deleteFriend}
             />
           </div>
         </div>
@@ -50,4 +51,4 @@ function mapStateToProps({ friendListReducer }) {
   }
 }
 
-export default connect(mapStateToProps, { fetchingFriends }) (App);
+export default connect(mapStateToProps, { fetchingFriends, deleteFriend }) (App);

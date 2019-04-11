@@ -12,19 +12,19 @@ class LoginForm extends React.Component {
     }
   };
 
-  handleChange = e => {
+  handleChange = event => {
     this.setState({
       credentials: {
         ...this.state.credentials,
-        [e.target.name]: e.target.value
+        [event.target.name]: event.target.value
       }
     });
   };
 
-  login = e => {
-    e.preventDefault();
+  login = event => {
+    event.preventDefault();
     this.props.login(this.state.credentials).then(() => {
-      this.props.history.push('/');
+      this.props.history.push('/protected');
     });
   };
 

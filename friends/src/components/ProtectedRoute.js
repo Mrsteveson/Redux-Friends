@@ -1,14 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-const ProtectedRoute = ({ component: FriendList, friends, ...rest }) => {
+const ProtectedRoute = ({ component: FriendList, friends, deleteFriend, ...rest }) => {
     return (
         <Route 
             {...rest}
             render = {props => {
                 if(localStorage.getItem('token')) {
-                    return <FriendList {...props} friends = {friends} />
+                    return <FriendList {...props} friends = {friends} deleteFriend = {deleteFriend} />
                 } else {
                     return <Redirect to = '/login' />
                 }
@@ -17,8 +16,8 @@ const ProtectedRoute = ({ component: FriendList, friends, ...rest }) => {
     )
 }
 
-const mapStateToProps = ({ errorStatusCode }) => ({
-    errorStatusCode
-});
+// const mapStateToProps = ({ errorStatusCode }) => ({
+//     errorStatusCode
+// });
 
-export default connect(mapStateToProps, {}) (ProtectedRoute);
+export default ProtectedRoute;
