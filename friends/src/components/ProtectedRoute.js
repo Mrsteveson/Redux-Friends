@@ -16,8 +16,4 @@ const ProtectedRoute = ({ component: FriendList, friends, deleteFriend, ...rest 
     )
 }
 
-// const mapStateToProps = ({ errorStatusCode }) => ({
-//     errorStatusCode
-// });
-
 export default ProtectedRoute;

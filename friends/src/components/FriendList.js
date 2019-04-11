@@ -8,7 +8,7 @@ const FriendList = props => {
         <div className = 'listContainer'>
             <h1>Add A Friend</h1>
             <FriendForm/>
-            <h1>My Friends</h1>
+            <h1>My Friends...</h1>
             {/* {props.fetchingFriends ? (
               <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
             ) : (

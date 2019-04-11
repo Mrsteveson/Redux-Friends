@@ -65,7 +65,7 @@ export const updateFriend = friend => dispatch => {
 export const deleteFriend = id => dispatch => {
     dispatch({ type: FETCHING });
     axiosWithAuth()
-        .post(`http://localhost:5000/api/friends/${id}`)
+        .delete(`http://localhost:5000/api/friends/${id}`)
         .then(response => {
             console.log(response.data);
             dispatch({ type: FETCHING_SUCCESS, payload: response.data })

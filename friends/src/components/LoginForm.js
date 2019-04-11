@@ -52,7 +52,6 @@ class LoginForm extends React.Component {
             )}
           </button>
         </form>
-        {this.props.error && <p className="error">{this.props.error}</p>}
       </div>
     );
   }
