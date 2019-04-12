@@ -1,7 +1,12 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-const ProtectedRoute = ({ component: FriendList, friends, deleteFriend, ...rest }) => {
+const ProtectedRoute = ({ 
+    component: FriendList,
+    friends, 
+    deleteFriend, 
+    ...rest 
+    }) => {
     return (
         <Route 
             {...rest}

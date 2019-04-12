@@ -1,19 +1,19 @@
 import React from 'react';
 import Friend from './Friend';
 import FriendForm from './FriendForm';
-// import Loader from 'react-loader-spinner';
+import Loader from 'react-loader-spinner';
+import { connect } from 'react-redux';
 
 const FriendList = props => {
     return (
         <div className = 'listContainer'>
             <h1>Add A Friend</h1>
             <FriendForm/>
-            <h1>My Friends...</h1>
-            {/* {props.fetchingFriends ? (
-              <Loader type="ThreeDots" color="#1f2a38" height="12" width="26" />
-            ) : (
-              'My Friends'
-            )} */}
+            <h1><Loader type="Ball-Triangle" color="#FF00FF" height={80} width={80} />
+                {props.fetchingFriends ?
+                (<Loader type="Ball-Triangle" color="#FF00FF" height={80} width={80} />)
+                : ('These Are My Friends')}
+            </h1>
             <div>
                 {props.friends.map(friend => (
                     <Friend 
@@ -28,3 +28,4 @@ const FriendList = props => {
 }
 
 export default FriendList;
+

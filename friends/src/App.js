@@ -11,9 +11,32 @@ import ProtectedRoute from './components/ProtectedRoute';
  
 
 class App extends React.Component {
+  state = {
+    updateFriend: {}
+  }
 
   componentDidMount() {
     this.props.fetchingFriends();
+  }
+
+  startUpdate = object => {
+    this.setState({
+      updateFriend: object
+    })
+  }
+
+  updateFriend = object => {
+    this.props.updateFriend(object);
+    this.setState({
+      updateFriend: {}
+    })
+  }
+
+  handleLogout = () => {
+    this.setState({
+      loggedIn: false,
+    })
+    localStorage.clear();
   }
 
   render() {
@@ -35,8 +58,10 @@ class App extends React.Component {
               component = {FriendList}
               friends = {this.props.friends}
               deleteFriend = {this.props.deleteFriend}
+              startUpdate = {this.startUpdate}
             />
           </div>
+          <button onClick = {this.handleLogout}>Logout</button>
         </div>
       </Router>
     );
