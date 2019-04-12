@@ -2,7 +2,7 @@ import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE, FETCHING, FETCHING_SUCCESS, FETCHI
 
 const initialState = {
     friends: [],
-    fetchingFriends: false,
+    gettingFriends: false,
     addingFriends: false,
     deletingFriend: false,
     updatingFriend: false,
@@ -16,7 +16,7 @@ export const friendListReducer = ( state = initialState, action ) => {
             return {
                 ...state,
                 loggingIn: true,
-                fetchingFriends: false,
+                gettingFriends: false,
                 error: null
             }
         case LOGIN_SUCCESS:
@@ -35,19 +35,19 @@ export const friendListReducer = ( state = initialState, action ) => {
         case FETCHING:
             return {
                 ...state,
-                fetchingFriends: true,
+                gettingFriends: true,
             }
         case FETCHING_SUCCESS:
             return {
                 ...state,
                 friends: action.payload,
-                fetchingFriends: false,
+                gettingFriends: false,
                 error: null,
             }
         case FETCHING_FAILURE:
             return {
                 ...state,
-                fetchingFriends: false,
+                gettingFriends: false,
                 error: action.payload,
             }
         default:

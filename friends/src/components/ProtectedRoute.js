@@ -4,7 +4,8 @@ import { Route, Redirect } from 'react-router-dom';
 const ProtectedRoute = ({ 
     component: FriendList,
     friends, 
-    deleteFriend, 
+    deleteFriend,
+    gettingFriends, 
     ...rest 
     }) => {
     return (
@@ -12,7 +13,7 @@ const ProtectedRoute = ({
             {...rest}
             render = {props => {
                 if(localStorage.getItem('token')) {
-                    return <FriendList {...props} friends = {friends} deleteFriend = {deleteFriend} />
+                    return <FriendList {...props} friends = {friends} deleteFriend = {deleteFriend} gettingFriends = {gettingFriends} />
                 } else {
                     return <Redirect to = '/login' />
                 }

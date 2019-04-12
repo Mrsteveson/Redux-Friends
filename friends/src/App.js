@@ -49,6 +49,7 @@ class App extends React.Component {
             <Link to = '/login'>Login</Link>
             <Link to = '/protected'>Protected</Link>
           </header>
+          <button onClick = {this.handleLogout}>Logout</button>
           <div>
             <Route 
               path = '/login' 
@@ -59,9 +60,9 @@ class App extends React.Component {
               friends = {this.props.friends}
               deleteFriend = {this.props.deleteFriend}
               startUpdate = {this.startUpdate}
+              gettingFriends = {this.props.gettingFriends}
             />
           </div>
-          <button onClick = {this.handleLogout}>Logout</button>
         </div>
       </Router>
     );
@@ -72,7 +73,8 @@ function mapStateToProps({ friendListReducer }) {
   return {
     friends: friendListReducer.friends,
     fetching: friendListReducer.fetching,
-    error: friendListReducer.error
+    error: friendListReducer.error,
+    gettingFriends: friendListReducer.gettingFriends
   }
 }
 
